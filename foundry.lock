@@ -1,0 +1,14 @@
+{
+  "lib/credible-std": {
+    "tag": {
+      "name": "0.3.0",
+      "rev": "552045ca9aa2b02ec95b28c28a13c1b47f69276b"
+    }
+  },
+  "lib/forge-std": {
+    "rev": "c7be2a3481f9e51230880bb0949072c7e3a4da82"
+  },
+  "lib/openzeppelin-contracts": {
+    "rev": "99eda2225c0246c265c902475c47ec0c6321f119"
+  }
+}
