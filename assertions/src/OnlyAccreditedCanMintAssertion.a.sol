@@ -32,7 +32,7 @@ contract OnlyAccreditedCanMintAssertion is Assertion {
             // compare the caller to the registry to see if they are accredited
             bool isAccredited = registry.isAccredited(calls[i].caller);
             // get the payload for the mint call, which is the address to mint to  and the amount to mint
-            (address recipient,) = abi.decode(calls[i].input[4:], (address, uint256));
+            (, address recipient,) = abi.decode(calls[i].input, (bytes4, address, uint256));
             // get the total supply and balance of the recipient before the call
             uint256 totalSupplyBefore = token.totalSupply();
             uint256 recipientBalanceBefore = token.balanceOf(recipient);
@@ -58,7 +58,7 @@ contract OnlyAccreditedCanMintAssertion is Assertion {
             // compare the caller to the registry to see if they are accredited
             bool isAccredited = registry.isAccredited(calls[i].caller);
             // get the payload for the transfer call, which is the address to transfer to and the amount to transfer
-            (address recipient,) = abi.decode(calls[i].input[4:], (address, uint256));
+            (, address recipient,) = abi.decode(calls[i].input, (bytes4, address, uint256));
             // get the balance of the sender and recipient before the call
             uint256 senderBalanceBefore = token.balanceOf(calls[i].caller);
             uint256 recipientBalanceBefore = token.balanceOf(recipient);
