@@ -7,6 +7,7 @@ import {PhylaxTestBase, MockOnlyAccreditedCanMint} from "./PhylaxTestBase.t.sol"
 contract KYCAssertionTest is PhylaxTestBase {
     address private constant RECIPIENT = address(0xCAFE);
 
+    // allow cl.assertion to access variables in the constructor
     function _createData() private view returns (bytes memory) {
         return abi.encodePacked(type(KYCAssertion).creationCode, abi.encode(address(token)));
     }
