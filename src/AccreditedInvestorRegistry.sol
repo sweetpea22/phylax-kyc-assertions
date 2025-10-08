@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
-import "./Ownable.sol";
+import {Ownable} from "openzeppelin-contracts/contracts/access/Ownable.sol";
 
 /// @title AccreditedInvestorRegistry
 /// @notice Maintains a list of addresses permitted to interact with gated tokens

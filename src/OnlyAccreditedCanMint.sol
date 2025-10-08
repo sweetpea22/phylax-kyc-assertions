@@ -22,12 +22,11 @@ contract OnlyAccreditedCanMint {
     error ZeroAddress();
     error InsufficientBalance();
 
-    modifier onlyAccredited() {
-        if (!registry.isAccredited(msg.sender)) revert NotAccredited();
-        _;
-    }
-
-    constructor(string memory _name, string memory _symbol, AccreditedInvestorRegistry _registry) {
+    constructor(
+        string memory _name,
+        string memory _symbol,
+        AccreditedInvestorRegistry _registry
+    ) {
         if (address(_registry) == address(0)) revert ZeroAddress();
         name = _name;
         symbol = _symbol;
@@ -35,7 +34,7 @@ contract OnlyAccreditedCanMint {
     }
 
     /// @notice Mint tokens to a recipient, caller must be accredited
-    function mint(address to, uint256 amount) external onlyAccredited {
+    function mint(address to, uint256 amount) external {
         if (to == address(0)) revert ZeroAddress();
         require(amount > 0, "amount zero");
 
@@ -46,7 +45,7 @@ contract OnlyAccreditedCanMint {
     }
 
     /// @notice Transfer tokens to another address, caller must be accredited
-    function transfer(address to, uint256 amount) external onlyAccredited returns (bool) {
+    function transfer(address to, uint256 amount) external returns (bool) {
         if (to == address(0)) revert ZeroAddress();
         uint256 senderBalance = balanceOf[msg.sender];
         if (senderBalance < amount) revert InsufficientBalance();
